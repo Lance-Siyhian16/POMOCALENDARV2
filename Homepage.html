@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PomoFocus Calendar & Timer - Homepage</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // --- VIOLET PALETTE (Default - Pomodoro) ---
+                        'primary-color': '#6D28D9', // Deep Violet (main accent)
+                        'secondary-accent': '#C4B5FD', // Light Violet (subtle backgrounds/hovers)
+                        
+                        // --- MATCHA PALETTE (Long Break) ---
+                        'matcha-primary': '#84B45C', // Soft Green (main accent)
+                        'matcha-light': '#EDF3EA',   // Very Light Green (app background)
+
+                        // --- NEW BLUE PALETTE (Short Break) ---
+                        'blue-primary': '#60A5FA', // Soft Blue (main accent)
+                        'blue-light': '#E0F2FE',   // Very Light Blue (app background)
+
+                        // --- GENERAL COLORS ---
+                        'accent-color': '#FFFFFF', // White
+                        'timer-card': 'rgba(255, 255, 255, 0.95)', // Near-white card
+                        'timer-active-button': '#FFFFFF', 
+                        'app-bg': '#F9FAFB', // Very Light Gray/Off-white background
+                        'dark-text': '#1F2937', // Very dark text
+                        'gray-medium': '#4B5563', // Gray-600 for secondary text
+                        // ------------------------
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body class="bg-app-bg font-sans text-dark-text">
+
+    <div class="min-h-screen flex flex-col items-center justify-center p-6">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-extrabold text-primary-color mb-4">PomoFocus Calendar & Timer</h1>
+            <p class="text-xl text-gray-medium">Boost your productivity with the Pomodoro Technique, integrated calendar, and task management.</p>
+        </header>
+
+        <main class="max-w-4xl w-full">
+            
+            <section class="grid md:grid-cols-3 gap-8 mb-12">
+                
+                <div class="bg-white p-6 rounded-xl shadow-xl border border-gray-200 text-center">
+                    <div class="p-4 bg-secondary-accent/50 rounded-full w-fit mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary-color mb-2">Pomodoro Timer</h3>
+                    <p class="text-gray-medium">Focus for 25 minutes, then take a short break. Switch to long breaks after four cycles. Customize modes for optimal productivity.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-xl border border-gray-200 text-center">
+                    <div class="p-4 bg-secondary-accent/50 rounded-full w-fit mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary-color mb-2">Calendar Integration</h3>
+                    <p class="text-gray-medium">View and manage your tasks on a visual calendar. Select dates to assign tasks, track due dates, and stay organized.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-xl border border-gray-200 text-center">
+                    <div class="p-4 bg-secondary-accent/50 rounded-full w-fit mx-auto mb-4">
+                        <svg class="w-8 h-8 text-primary-color" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary-color mb-2">Task Management</h3>
+                    <p class="text-gray-medium">Create, assign, and track tasks with estimated durations. Focus on one task at a time during Pomodoro sessions.</p>
+                </div>
+
+            </section>
+
+            <div class="text-center">
+                <button onclick="window.location.href='index.html'" class="bg-primary-color text-white text-xl font-bold py-4 px-8 rounded-lg shadow-xl hover:opacity-90 transition duration-150 transform active:scale-95">
+                    Get Started
+                </button>
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
