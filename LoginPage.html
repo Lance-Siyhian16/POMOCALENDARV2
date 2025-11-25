@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PomoCalendar</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // --- VIOLET PALETTE (Default - Pomodoro) ---
+                        'primary-color': '#6D28D9', // Deep Violet (main accent)
+                        'secondary-accent': '#C4B5FD', // Light Violet (subtle backgrounds/hovers)
+
+                        // --- GENERAL COLORS ---
+                        'accent-color': '#FFFFFF', // White
+                        'timer-card': 'rgba(255, 255, 255, 0.95)', // Near-white card
+                        'timer-active-button': '#FFFFFF', 
+                        'app-bg': '#F9FAFB', // Very Light Gray/Off-white background
+                        'dark-text': '#1F2937', // Very dark text
+                        'gray-medium': '#4B5563', // Gray-600 for secondary text
+                        // ------------------------
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body class="relative min-h-screen min-w-screen bg-gray-50 flex flex-col justify-center px-4 py-6 sm:py-12 sm:px-6 lg:px-8">
+    <div class="pointer-events-none absolute top-0 left-0 w-full h-full object-contain opacity-10 -z-10"></div>
+    
+    <!-- Header Section - Mobile Optimized -->
+    <div class="w-full max-w-sm mx-auto sm:max-w-md relative z-10">
+      <div class="flex justify-center mb-6 sm:mb-8">
+        <div class="w-24 h-24 sm:w-28 sm:h-28 bg-purple-600 rounded-lg flex items-center justify-center">
+          <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+      </div>
+      
+      <h2 class="text-center text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2 sm:mb-4">
+        Sign in to your account
+      </h2>
+      
+      <p class="text-center text-sm text-gray-600 mb-6 sm:mb-8">
+        Or 
+        <a href="SignUpPage.html" class="font-medium text-purple-600 hover:text-purple-500 active:text-purple-700">
+          create a new account
+        </a>
+      </p>
+    </div>
+
+    <!-- Form Section - Mobile Optimized -->
+    <div class="w-full max-w-sm mx-auto sm:max-w-md relative z-10">
+      <div class="bg-white py-6 px-4 shadow-lg rounded-lg sm:py-8 sm:px-10 sm:rounded-lg">
+        <!-- Error Message -->
+        <div id="error-message" class="hidden mb-4 bg-red-50 border border-red-200 text-red-600 px-3 py-2 sm:px-4 sm:py-3 rounded text-sm"></div>
+
+        <!-- Form -->
+        <form id="login-form" class="space-y-4 sm:space-y-6">
+          <!-- Username Field -->
+          <div>
+            <label for="username" class="block text-sm font-medium text-gray-700 mb-1">
+              Username
+            </label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              required
+              class="appearance-none block w-full px-3 py-3 sm:py-2 border border-gray-300 rounded-md placeholder-gray-400 text-gray-900 bg-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
+              placeholder="Enter your username"
+            />
+          </div>
+
+          <!-- Password Field -->
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              class="appearance-none block w-full px-3 py-3 sm:py-2 border border-gray-300 rounded-md placeholder-gray-400 text-gray-900 bg-white text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
+              placeholder="Enter your password"
+            />
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-2">
+            <button
+              type="submit"
+              class="w-full flex justify-center py-3 sm:py-2 px-4 border border-transparent rounded-md shadow-sm text-base sm:text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 active:bg-purple-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Sign in
+            </button>
+          </div>
+        </form>
+
+        <!-- Back to Home Link -->
+        <div class="mt-6 text-center">
+          <a 
+            href="index.html" 
+            class="text-sm text-purple-600 hover:text-purple-500 active:text-purple-700 transition-colors"
+          >
+            ← Back to home
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById('login-form');
+      const errorDiv = document.getElementById('error-message');
+      const usernameInput = document.getElementById('username');
+      const passwordInput = document.getElementById('password');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        errorDiv.classList.add('hidden');
+        errorDiv.textContent = '';
+
+        const formData = {
+          username: usernameInput.value.trim(),
+          password: passwordInput.value
+        };
+
+        // Get users from localStorage
+        const usersString = localStorage.getItem('users');
+        const users = usersString ? JSON.parse(usersString) : [];
+
+        // Find user
+        const user = users.find(
+          user => user.username === formData.username && user.password === formData.password
+        );
+
+        if (user) {
+          // Store logged in user in localStorage
+          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('username', formData.username);
+          window.location.href = 'index.html';
+        } else {
+          errorDiv.textContent = 'Invalid username or password';
+          errorDiv.classList.remove('hidden');
+        }
+      });
+    </script>
+</body>
+</html>
