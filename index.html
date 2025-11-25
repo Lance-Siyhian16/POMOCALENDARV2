@@ -62,9 +62,17 @@
                         <p class="text-sm text-gray-medium">Focus Mode Ready</p>
                     </div>
                 </div>
-                <button id="logout-button" class="hidden px-3 py-1 bg-red-500 text-white text-sm rounded-md hover:bg-red-600 transition-colors">
-                    Logout
-                </button>
+                <div class="flex items-center space-x-2">
+                    <button id="login-button" class="hidden px-3 py-1 bg-primary-color text-white text-sm rounded-md hover:opacity-90 transition-colors">
+                        Login
+                    </button>
+                    <button id="signup-button" class="hidden px-3 py-1 bg-secondary-accent text-primary-color text-sm rounded-md hover:bg-secondary-accent/80 transition-colors">
+                        Signup
+                    </button>
+                    <button id="logout-button" class="hidden px-3 py-1 bg-red-500 text-white text-sm rounded-md hover:bg-red-600 transition-colors">
+                        Logout
+                    </button>
+                </div>
             </header>
 
             <div class="calendar-wrapper">
@@ -167,20 +175,50 @@
         // Set username variable from localStorage (input from SignUpPage.html)
         const username = localStorage.getItem('username') || 'Guest';
 
-        // Update the welcome message and show logout button if logged in
+        // Update the welcome message and show appropriate buttons based on login status
         document.addEventListener('DOMContentLoaded', () => {
             const welcomeElement = document.querySelector('header h1');
+            const loginButton = document.getElementById('login-button');
+            const signupButton = document.getElementById('signup-button');
             const logoutButton = document.getElementById('logout-button');
             if (welcomeElement) {
                 welcomeElement.textContent = `Welcome Back, ${username}!`;
             }
-            if (username !== 'Guest' && logoutButton) {
-                logoutButton.classList.remove('hidden');
-                logoutButton.addEventListener('click', () => {
-                    localStorage.removeItem('user');
-                    localStorage.removeItem('username');
-                    window.location.href = 'LoginPage.html';
-                });
+            if (username === 'Guest') {
+                // Show login and signup buttons for guests
+                if (loginButton) {
+                    loginButton.classList.remove('hidden');
+                    loginButton.addEventListener('click', () => {
+                        window.location.href = 'LoginPage.html';
+                    });
+                }
+                if (signupButton) {
+                    signupButton.classList.remove('hidden');
+                    signupButton.addEventListener('click', () => {
+                        window.location.href = 'SignUpPage.html';
+                    });
+                }
+                // Ensure logout is hidden
+                if (logoutButton) {
+                    logoutButton.classList.add('hidden');
+                }
+            } else {
+                // Show logout button for logged-in users
+                if (logoutButton) {
+                    logoutButton.classList.remove('hidden');
+                    logoutButton.addEventListener('click', () => {
+                        localStorage.removeItem('user');
+                        localStorage.removeItem('username');
+                        window.location.href = 'LoginPage.html';
+                    });
+                }
+                // Ensure login/signup are hidden
+                if (loginButton) {
+                    loginButton.classList.add('hidden');
+                }
+                if (signupButton) {
+                    signupButton.classList.add('hidden');
+                }
             }
         });
     </script>
