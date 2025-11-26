@@ -100,6 +100,10 @@ function showModal(title, message) {
     modalContainer.classList.add('flex');
 }
 
+function showHelp() {
+    showModal('Help', 'This is the Pomodoro Timer app. It helps you manage your time with focused work sessions and breaks. Use the calendar to schedule tasks, start timers, and track your progress.');
+}
+
 // --- Task Storage (Local Simulation) ---
 
 /** Retrieves all tasks from localStorage. */
@@ -544,6 +548,7 @@ window.onload = function () {
     window.toggleTaskDone = toggleTaskDone;
     window.deleteTask = deleteTask;
     window.skipTimer = skipTimer; // NEW: Make skipTimer globally accessible
+    window.showHelp = showHelp;
 
     // Set default date for task input and calendar
     newTaskDate.value = selectedDateString;
